@@ -27,4 +27,14 @@ public:
 
 	UPROPERTY()
 	UFPSUserWidget* CurrentWidget;
+
+protected:
+
+	UPROPERTY(EditDefaultsOnly, Category = "Timer")
+	int32 CountdownTime = 10;
+
+	FTimerHandle TimerHandle_Countdown;
+
+	void CountdownTick();
+	void TransitionToWinScene();
 };

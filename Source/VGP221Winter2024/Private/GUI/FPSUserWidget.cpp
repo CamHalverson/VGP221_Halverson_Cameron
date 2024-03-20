@@ -5,32 +5,29 @@
 
 void UFPSUserWidget::NativeConstruct()
 {
-	SetHealthBar(1.0f);
-	SetScore(0);
-
-	/*if (ButtonWidgetPrefab) {
-		for (int i = 0; i < 4; i++) 
-		{
-			UUserWidget* widget = CreateWidget(this, ButtonWidgetPrefab);
-			ButtonContainer->AddChildToVerticalBox(widget);
-
-			UButtonWidget* button = Cast<UButtonWidget>(widget); // Get Component in Unity
-			button->SetText(i);
-		}
-	}*/
+    SetHealthBar(1.0f);
+    SetScore(0);
+    SetCountdown(0);
 }
 
-void UFPSUserWidget::SetHealthBar(float percentage)
+void UFPSUserWidget::SetHealthBar(float Percentage)
 {
-	if (!HealthBar) return;
+    if (!HealthBar) return;
 
-	HealthBar->SetPercent(percentage);
+    HealthBar->SetPercent(Percentage);
 }
 
-void UFPSUserWidget::SetScore(int amount)
+void UFPSUserWidget::SetScore(int NewScore)
 {
-	if (!ScoreText) return;
+    if (!ScoreText) return;
 
-	UIScore += amount;
-	ScoreText->SetText(FText::FromString("Score: " + FString::FromInt(UIScore)));
+    UIScore = NewScore;
+    ScoreText->SetText(FText::FromString("Score: " + FString::FromInt(UIScore)));
+}
+
+void UFPSUserWidget::SetCountdown(int CountdownValue)
+{
+    if (!CountdownText) return;
+
+    CountdownText->SetText(FText::FromString("Countdown: " + FString::FromInt(CountdownValue)));
 }

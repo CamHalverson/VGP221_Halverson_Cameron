@@ -19,26 +19,32 @@ class VGP221WINTER2024_API UFPSUserWidget : public UUserWidget
 	GENERATED_BODY()
 	
 public:
-	virtual void NativeConstruct() override;
+    virtual void NativeConstruct() override;
 
-	UPROPERTY(meta = (BindWidget))
-	UProgressBar* HealthBar;
+    UPROPERTY(meta = (BindWidget))
+    UProgressBar* HealthBar;
 
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* ScoreText;
+    UPROPERTY(meta = (BindWidget))
+    UTextBlock* ScoreText;
 
-	UPROPERTY(meta = (BindWidget))
-	UVerticalBox* ButtonContainer;
+    UPROPERTY(meta = (BindWidget))
+    UVerticalBox* ButtonContainer;
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<class UButtonWidget> ButtonWidgetPrefab;
+    UPROPERTY(meta = (BindWidget))
+    UTextBlock* CountdownText;
 
-	UFUNCTION()
-	void SetHealthBar(float percentage);
+    UPROPERTY(EditAnywhere)
+    TSubclassOf<class UButtonWidget> ButtonWidgetPrefab;
 
-	UFUNCTION()
-	void SetScore(int newScore);
+    UFUNCTION()
+    void SetHealthBar(float Percentage);
+
+    UFUNCTION()
+    void SetScore(int NewScore);
+
+    UFUNCTION()
+    void SetCountdown(int CountdownValue);
 
 private:
-	int UIScore = 0;
+    int UIScore = 0;
 };

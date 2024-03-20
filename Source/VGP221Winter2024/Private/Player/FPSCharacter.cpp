@@ -2,6 +2,7 @@
 
 
 #include "Player/FPSCharacter.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AFPSCharacter::AFPSCharacter()
@@ -46,7 +47,7 @@ void AFPSCharacter::BeginPlay()
 		FAttachmentTransformRules::SnapToTargetNotIncludingScale,
 		TEXT("b_RightWeapon"));
 
-	GunMesh->SetRelativeRotation(FRotator(180.0f, 180.0f, 80.0f));
+	GunMesh->SetRelativeRotation(FRotator(90.0f, 180.0f, 80.0f));
 }
 
 // Called every frame
@@ -145,9 +146,10 @@ float AFPSCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
 {
 	float FinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
-	// Easy way to acccess the gamemode
+	// Easy way to access the game mode
 	AFPSGameMode* Gamemode = Cast<AFPSGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-	if (Gamemode) {
+	if (Gamemode)
+	{
 		Health -= DamageAmount;
 		float HealthPercent = Health / MaxHealth;
 
@@ -156,10 +158,12 @@ float AFPSCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
 
 	if (Health <= 0)
 	{
-		// Destroy the enemy if health drops to or below 0
-		Destroy();
+		// If health drops to or below 0, transition to LoseSceneMap
+		UGameplayStatics::OpenLevel(GetWorld(), FName("LoseSceneMap"), true);
 	}
 
 	return FinalDamage;
 }
+
+
 

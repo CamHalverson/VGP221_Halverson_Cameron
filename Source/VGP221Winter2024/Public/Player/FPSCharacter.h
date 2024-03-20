@@ -44,6 +44,9 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 	class USkeletalMeshComponent* GunMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	class UFPSUserWidget* FPSUserWidget;
+
 
 	// Connecting a prefab in blueprints. Similar to Unity gameobjects drag and drop
 	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
@@ -65,4 +68,6 @@ public:
 	const float MaxHealth = 100;
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
+
 };

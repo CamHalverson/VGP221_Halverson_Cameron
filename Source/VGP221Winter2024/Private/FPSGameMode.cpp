@@ -1,10 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "FPSGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 void AFPSGameMode::StartPlay()
 {
 	Super::StartPlay(); // Calls base function
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle_Countdown, this, &AFPSGameMode::CountdownTick, 1.0f, true, 0.0f);
+
 
 	// C Assert
 	// If this fails throw an error
@@ -37,4 +41,24 @@ void AFPSGameMode::ChangeMenuWidget(TSubclassOf<UFPSUserWidget> NewWidgetClass)
 		CurrentWidget->AddToViewport();
 	}
 	
+}
+
+void AFPSGameMode::CountdownTick()
+{
+	CountdownTime--;
+
+	if (CurrentWidget != nullptr)
+	{
+		CurrentWidget->SetCountdown(CountdownTime); // Update the UI with the new countdown value
+	}
+
+	if (CountdownTime <= 0)
+	{
+		TransitionToWinScene();
+	}
+}
+
+void AFPSGameMode::TransitionToWinScene()
+{
+    UGameplayStatics::OpenLevel(GetWorld(), "WinSceneMap");
 }
