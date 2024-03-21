@@ -47,7 +47,7 @@ void AFPSCharacter::BeginPlay()
 		FAttachmentTransformRules::SnapToTargetNotIncludingScale,
 		TEXT("b_RightWeapon"));
 
-	GunMesh->SetRelativeRotation(FRotator(90.0f, 180.0f, 80.0f));
+	GunMesh->SetRelativeRotation(FRotator(90.0f, 180.0f, 90.0f));
 }
 
 // Called every frame
@@ -146,7 +146,6 @@ float AFPSCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
 {
 	float FinalDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
-	// Easy way to access the game mode
 	AFPSGameMode* Gamemode = Cast<AFPSGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 	if (Gamemode)
 	{
@@ -158,8 +157,7 @@ float AFPSCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
 
 	if (Health <= 0)
 	{
-		// If health drops to or below 0, transition to LoseSceneMap
-		UGameplayStatics::OpenLevel(GetWorld(), FName("LoseSceneMap"), true);
+		UGameplayStatics::OpenLevel(GetWorld(), FName("Lose"), true);
 	}
 
 	return FinalDamage;

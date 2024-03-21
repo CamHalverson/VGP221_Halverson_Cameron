@@ -52,10 +52,8 @@ float AEnemyAIController::TakeDamage(float DamageAmount, FDamageEvent const& Dam
 
 	Health -= DamageAmount;
 
-	// Check if health is less than or equal to 0
 	if (Health <= 0)
 	{
-		// Destroy the enemy if health drops to or below 0
 		Destroy();
 	}
 

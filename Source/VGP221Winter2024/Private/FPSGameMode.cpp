@@ -49,7 +49,7 @@ void AFPSGameMode::CountdownTick()
 
 	if (CurrentWidget != nullptr)
 	{
-		CurrentWidget->SetCountdown(CountdownTime); // Update the UI with the new countdown value
+		CurrentWidget->SetCountdown(CountdownTime);
 	}
 
 	if (CountdownTime <= 0)
@@ -60,5 +60,5 @@ void AFPSGameMode::CountdownTick()
 
 void AFPSGameMode::TransitionToWinScene()
 {
-    UGameplayStatics::OpenLevel(GetWorld(), "WinSceneMap");
+    UGameplayStatics::OpenLevel(GetWorld(), "Win");
 }

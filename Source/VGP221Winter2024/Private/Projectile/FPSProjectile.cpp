@@ -85,17 +85,13 @@ void AFPSProjectile::OnWhateverYouWantToNameIt(UPrimitiveComponent* HitComponent
 	{
 		UE_LOG(LogTemp, Warning, TEXT("OtherActor class: %s"), *OtherActor->GetClass()->GetName());
 
-		// Check if the other actor is an instance of the enemy AI character class
 		if (OtherActor->IsA<AEnemyAICharacter>())
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Enemy AI Character detected"));
 
-			// Destroy the enemy AI character
 			OtherActor->Destroy();
 		}
 	}
-
-	// Destroy the projectile
 	Destroy();
 }
 

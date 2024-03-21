@@ -47,7 +47,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 	class UFPSUserWidget* FPSUserWidget;
 
-
 	// Connecting a prefab in blueprints. Similar to Unity gameobjects drag and drop
 	UPROPERTY(EditDefaultsOnly, Category = "Projectile")
 	TSubclassOf<class AFPSProjectile> ProjectileClass;

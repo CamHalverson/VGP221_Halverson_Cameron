@@ -4,34 +4,35 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "GUI/MenuWidget.h"
 #include "Logging/StructuredLog.h"
-#include "GUI/FPSUserWidget.h"
-#include "FPSGameMode.generated.h"
+#include "LoseGameMode.generated.h"
+
 
 /**
  * 
  */
 UCLASS()
-class VGP221WINTER2024_API AFPSGameMode : public AGameModeBase
+class VGP221WINTER2024_API ALoseGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
 public:
 	virtual void StartPlay() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GUI")
-	TSubclassOf<UFPSUserWidget> UserWidgetPrefab;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GUI")
+	TSubclassOf<UMenuWidget> UserWidgetPrefab;
 
 	UFUNCTION(BlueprintCallable, Category = "GUI")
-	void ChangeMenuWidget(TSubclassOf<UFPSUserWidget> NewWidgetClass);
+	void ChangeMenuWidget(TSubclassOf<UMenuWidget> NewWidgetClass);
 
 	UPROPERTY()
-	UFPSUserWidget* CurrentWidget;
+	UMenuWidget* CurrentWidget;
 
 protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Timer")
-	int32 CountdownTime = 15;
+	int32 CountdownTime = 30;
 
 	FTimerHandle TimerHandle_Countdown;
 

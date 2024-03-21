@@ -45,6 +45,9 @@ public:
     UFUNCTION()
     void SetCountdown(int CountdownValue);
 
+    UFUNCTION(BlueprintCallable)
+    int32 GetScore() const { return UIScore; }
+
 private:
     int UIScore = 0;
 };

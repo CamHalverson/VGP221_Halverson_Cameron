@@ -39,10 +39,10 @@ void ACoin::OnCollect()
 
 void ACoin::DeathTimerComplete()
 {
-	// Easy way to acccess the gamemode
 	AFPSGameMode* Gamemode = Cast<AFPSGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 	if (Gamemode) {
-		Gamemode->CurrentWidget->SetScore(Points);
+		
+		Gamemode->CurrentWidget->SetScore(Gamemode->CurrentWidget->GetScore() + Points);
 	}
 
 	Destroy();

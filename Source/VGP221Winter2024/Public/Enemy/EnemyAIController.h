@@ -42,8 +42,8 @@ public:
 	FTimerDelegate FunctionDelegate;
 	void RunTriggerableTimer();
 
-	float Health = 100;
-	const float MaxHealth = 100;
+	float Health = 10000;
+	const float MaxHealth = 10000;
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 };
